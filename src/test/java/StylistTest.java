@@ -20,4 +20,10 @@ public class StylistTest {
     assertEquals("Name", stylist.getName());
   }
 
+  @Test
+  public void all_initiallyEmpty_0() {
+    Stylist stylist = new Stylist("Name");
+    assertEquals(0, Stylist.all().size());
+  }
+
 }
