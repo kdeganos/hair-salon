@@ -46,4 +46,12 @@ public class StylistTest {
     assertEquals(stylist.getId(), savedStylist.getId());
   }
 
+  @Test
+  public void find_returnsCorrectInstanceOfStylist() {
+    Stylist stylist = new Stylist("Name");
+    stylist.save();
+    Stylist foundStylist = Stylist.find(stylist.getId());
+
+    assertTrue(stylist.equals(foundStylist));
+  }
 }
