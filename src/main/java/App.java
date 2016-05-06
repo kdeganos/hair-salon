@@ -7,28 +7,36 @@ import static spark.Spark.*;
 
 public class App {
   public static void main(String[] args) {
-    // staticfilelocation("/public");
-    // String layout = "templates/layout.vtl";
-    //
-    // get("/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/index.vtl");
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
-    //
-    // get("/output", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/output.vtl");
-    //
-    //   Blank blankList = new Blank(); /
-    //
-    //   String userInputString = request.queryParams("???");
-    //   Integer userInputNumber = Integer.parseInt(userInput);
-    //
-    //   ArrayList myResults = blankList.runBlank(userInputNumber);
-    //
-    //   model.put("result", myResults);
-    //   return new ModelAndView(model, layout);
-    // }, new VelocityTemplateEngine());
+    staticFileLocation("/public");
+    String layout = "templates/layout.vtl";
+
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/index.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/add-stylist", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      model.put("template", "templates/add-stylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("list-stylists", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String name = request.queryParams("stylistName");
+      Stylist newStylist = new Stylist(name);
+
+      newStylist.save();
+
+      boolean addingNew = true;
+
+      model.put("stylists", Stylist.all());
+      model.put("addingNew", addingNew);
+      model.put("template", "templates/list-stylists.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }

@@ -52,4 +52,13 @@ public class Stylist{
             .executeAndFetchFirst(Stylist.class);
     }
   }
+
+  public List<Client> allStylistClients() {
+    String sql = "SELECT id, name FROM clients WHERE id=:id";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql)
+            .addParameter("id", id)
+            .executeAndFetch(Client.class);
+    }
+  }
 }

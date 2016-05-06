@@ -24,13 +24,18 @@ public class AppTest extends FluentTest{
  public static ServerRule server = new ServerRule();
 
  @Rule
-public DatabaseRule database = new DatabaseRule();
+ public DatabaseRule database = new DatabaseRule();
 
- // @Test
- // public void rootTest() {
- //   goTo("http://localhost:4567/");
- //   fill("#???").with("?");
- //   submit(".btn");
- //   assertThat(pageSource()).contains("what you want to be found related to your method");
- // }
+  @Test
+  public void rootTest() {
+   goTo("http://localhost:4567/");
+   assertThat(pageSource()).contains("Hair Salon");
+  }
+
+  @Test
+  public void addStylistPageTest() {
+    goTo("http://localhost:4567/");
+    click("a", withText("Add A Stylist"));
+    assertThat(pageSource()).contains("Stylist Name");
+  }
 }
