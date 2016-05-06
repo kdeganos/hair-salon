@@ -77,6 +77,7 @@ public class AppTest extends FluentTest{
     goTo(categoryPath);
     click("a", withText("Add a Client"));
     fill("#clientName").with("Client 1");
+    click("option", with("value").equalTo("4"));
     submit(".btn", withText("Add"));
     assertThat(pageSource()).contains("Client 1");
   }
@@ -85,7 +86,7 @@ public class AppTest extends FluentTest{
   public void listClientsPageTest() {
     Stylist stylist = new Stylist("Name 1");
     stylist.save();
-    Client client = new Client("Client 1", stylist.getId());
+    Client client = new Client("Client 1", 4, stylist.getId());
     client.save();
     goTo("http://localhost:4567/list-clients");
     assertThat(pageSource()).contains("Client 1");
@@ -95,7 +96,7 @@ public class AppTest extends FluentTest{
   public void clientPageTest() {
     Stylist stylist = new Stylist("Name 1");
     stylist.save();
-    Client client = new Client("Client 1", stylist.getId());
+    Client client = new Client("Client 1", 4, stylist.getId());
     client.save();
     String categoryPath = String.format("http://localhost:4567/client/%d", client.getId());
     goTo(categoryPath);

@@ -5,18 +5,24 @@ public class Client{
   private String name;
   private int id;
   private int stylist_id;
+  private int rating;
 
-  public Client (String name, int stylist_id) {
+  public Client (String name, int rating, int stylist_id) {
     this.name = name;
+    this.rating = rating;
     this.stylist_id = stylist_id;
    }
 
   public String getName() {
-     return name;
+    return name;
    }
 
   public int getId() {
-     return id;
+    return id;
+  }
+
+  public int getRating() {
+    return rating;
   }
 
   public int getStylistId() {
@@ -41,10 +47,11 @@ public class Client{
   }
 
   public void save() {
-    String sql = "INSERT INTO clients (name, stylist_id) VALUES (:name, :stylist_id)";
+    String sql = "INSERT INTO clients (name, rating, stylist_id) VALUES (:name, :rating, :stylist_id)";
     try(Connection con = DB.sql2o.open()) {
       this.id = (int) con.createQuery(sql, true)
                 .addParameter("name", this.name)
+                .addParameter("rating", this.rating)
                 .addParameter("stylist_id", this.stylist_id)
                 .executeUpdate()
                 .getKey();

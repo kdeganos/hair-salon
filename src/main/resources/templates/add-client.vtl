@@ -1,8 +1,18 @@
 <h1 class="jumbotron">Add a Client for $stylist.getName()</h1>
 <div class="container">
   <form class="form-group" action="/stylist/$stylist.getId()" method="post">
-    <label for="clienttName">Client Name</label>
+    <label for="clientName">Client Name</label>
     <input type="text" name="clientName" id="clientName">
+
+    <label for="rating">Rating</label>
+    <select name="rating" id="rating">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+
     <button type="submit" class="btn btn-info">Add</button>
   </form>
 </div>
@@ -10,8 +20,8 @@
 <div class="row">
   <div class="center col-xs-12">
     <a class="btn btn-primary" href="/stylist/$stylist.getId()">View $stylist.getName()</a>
-    <a class="btn btn-primary" href="/list-stylists">View All Clients</a>
-    <a class="btn btn-primary" href="/list-clients">View All Stylists</a>
+    <a class="btn btn-primary" href="/list-clients">View All Clients</a>
+    <a class="btn btn-primary" href="/list-stylists">View All Stylists</a>
     <a class="btn btn-primary" href="/add-stylist">Add a Stylist</a>
     <a class="btn btn-primary" href="/">Go to home page</a>
 

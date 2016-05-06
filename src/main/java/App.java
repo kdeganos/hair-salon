@@ -73,9 +73,11 @@ public class App {
       Stylist stylist = Stylist.find(stylist_id);
 
       String clientName = request.queryParams("clientName");
+      int rating = Integer.parseInt(request.queryParams("rating"));
 
-      Client newClient = new Client(clientName, stylist_id);
+      Client newClient = new Client(clientName, rating, stylist_id);
       newClient.save();
+      stylist.updateRating(rating, true); //boolean for reviewCounter
 
       boolean addingNewClient = true;
 
@@ -112,6 +114,7 @@ public class App {
       Client client = Client.find(Integer.parseInt(request.params(":id")));
       Stylist stylist = Stylist.find(client.getStylistId());
 
+      stylist.updateRating(client.getRating(), false); //boolean for reviewCounter
       client.delete();
 
       boolean deletingClient = true;
@@ -119,6 +122,21 @@ public class App {
       model.put("deletingClient", deletingClient);
       model.put("stylist", stylist);
       model.put("template", "templates/stylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    get("/delete-stylist/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Stylist stylist = Stylist.find(Integer.parseInt(request.params(":id")));
+
+      stylist.delete();
+
+      boolean deletingStylist = true;
+
+      model.put("deletingStylist", deletingStylist);
+      model.put("stylists", Stylist.all());
+      model.put("template", "templates/list-stylists.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
   }
