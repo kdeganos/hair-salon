@@ -61,4 +61,15 @@ public class Stylist{
             .executeAndFetch(Client.class);
     }
   }
+
+  public void delete() {
+    String sql = "DELETE FROM stylists WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql).addParameter("id", this.id).executeUpdate();
+    }
+    String sql2 = "DELETE FROM clients WHERE stylist_id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql2).addParameter("id", this.id).executeUpdate();
+    }
+  }
 }

@@ -54,4 +54,13 @@ public class StylistTest {
 
     assertTrue(stylist.equals(foundStylist));
   }
+
+  @Test
+  public void delete_removesStylistFromDB() {
+    Stylist stylist = new Stylist("Name");
+    stylist.save();
+    stylist.delete();
+
+    assertFalse(Stylist.all().contains(stylist));
+  }
 }
