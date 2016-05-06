@@ -90,4 +90,15 @@ public class AppTest extends FluentTest{
     goTo("http://localhost:4567/list-clients");
     assertThat(pageSource()).contains("Client 1");
   }
+
+  @Test
+  public void clientPageTest() {
+    Stylist stylist = new Stylist("Name 1");
+    stylist.save();
+    Client client = new Client("Client 1", stylist.getId());
+    client.save();
+    String categoryPath = String.format("http://localhost:4567/client/%d", client.getId());
+    goTo(categoryPath);
+    assertThat(pageSource()).contains("Client 1");
+  }
 }

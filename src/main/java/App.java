@@ -92,5 +92,19 @@ public class App {
       model.put("template", "templates/list-clients.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/client/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+
+      Stylist stylist = Stylist.find(client.getStylistId());
+
+      model.put("client", client);
+      model.put("stylist", stylist);
+      model.put("template", "templates/client.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }
