@@ -106,5 +106,20 @@ public class App {
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
+    get("/delete-client/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+      Stylist stylist = Stylist.find(client.getStylistId());
+
+      client.delete();
+
+      boolean deletingClient = true;
+
+      model.put("deletingClient", deletingClient);
+      model.put("stylist", stylist);
+      model.put("template", "templates/stylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

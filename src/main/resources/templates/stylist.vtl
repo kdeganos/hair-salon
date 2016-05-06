@@ -18,14 +18,20 @@
   #else <br>
   #end
 
-  #if ($removedClient)
+  #if ($deletingClient)
     <h3 class="middle animated flash">Client Removed Successfully</h3>
   #else <br>
   #end
 <br>
 <a class="btn btn-primary" href="/add-client/$stylist.getId()">Add a Client</a>
+
 <br>
 <br>
+<form action="/delete-stylist/$stylist.getId()" method="get">
+  <button type="submit" class="btn btn-danger">Delete Stylist</button>
+</form>
+<br>
+
 <div class="center">
   <a class="btn btn-primary" href="/add-stylist">Add a Stylist</a>
   <a class="btn btn-primary" href="/list-stylists">View All Stylists</a>
