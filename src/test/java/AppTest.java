@@ -68,4 +68,16 @@ public class AppTest extends FluentTest{
     click("a", withText("Add a Client"));
     assertThat(pageSource()).contains("Client Name");
   }
+
+  @Test
+  public void addClientFormTest() {
+    Stylist stylist = new Stylist("Name 1");
+    stylist.save();
+    String categoryPath = String.format("http://localhost:4567/stylist/%d", stylist.getId());
+    goTo(categoryPath);
+    click("a", withText("Add a Client"));
+    fill("#clientName").with("Client 1");
+    submit(".btn", withText("Add"));
+    assertThat(pageSource()).contains("Client 1");
+  }
 }

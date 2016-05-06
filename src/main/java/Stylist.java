@@ -54,7 +54,7 @@ public class Stylist{
   }
 
   public List<Client> allStylistClients() {
-    String sql = "SELECT id, name FROM clients WHERE id=:id";
+    String sql = "SELECT id, name FROM clients WHERE stylist_id=:id";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql)
             .addParameter("id", id)
