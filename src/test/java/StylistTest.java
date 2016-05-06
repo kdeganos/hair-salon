@@ -11,19 +11,31 @@ public class StylistTest {
   @Test
   public void stylist_instantiatesCorrectly() {
     Stylist stylist = new Stylist("Name");
+
     assertEquals(true, stylist instanceof Stylist);
   }
 
   @Test
   public void getName_returnsName_Name() {
     Stylist stylist = new Stylist("Name");
+
     assertEquals("Name", stylist.getName());
   }
 
   @Test
   public void all_initiallyEmpty_0() {
     Stylist stylist = new Stylist("Name");
+
     assertEquals(0, Stylist.all().size());
   }
+
+  @Test
+  public void equals_returnsTrueIfBothNamesSame_true() {
+    Stylist stylist1 = new Stylist("Name");
+    Stylist stylist2 = new Stylist("Name");
+
+    assertTrue(stylist1.equals(stylist2));
+  }
+
 
 }

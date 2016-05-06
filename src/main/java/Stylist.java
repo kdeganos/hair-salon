@@ -24,5 +24,13 @@ public class Stylist{
     }
   }
 
-
+  @Override
+  public boolean equals(Object stylist){
+    if (!(stylist instanceof Stylist)) {
+      return false;
+    } else {
+      Stylist otherStylist = (Stylist) stylist;
+      return this.getName().equals(otherStylist.getName());
+    }
+  }
 }
