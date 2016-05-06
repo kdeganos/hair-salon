@@ -77,7 +77,7 @@ public class AppTest extends FluentTest{
     goTo(categoryPath);
     click("a", withText("Add a Client"));
     fill("#clientName").with("Client 1");
-    click("option", with("value").equalTo("4"));
+    click("option", withText("4"));
     submit(".btn", withText("Add"));
     assertThat(pageSource()).contains("Client 1");
   }

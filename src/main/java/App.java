@@ -139,5 +139,48 @@ public class App {
       model.put("template", "templates/list-stylists.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/client/update/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+
+      Stylist stylist = Stylist.find(client.getStylistId());
+
+      boolean update = true;
+
+      model.put("update", update);
+      model.put("client", client);
+      model.put("stylist", stylist);
+      model.put("stylists", Stylist.all());
+      model.put("template", "templates/client.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/client/update/:id", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+
+      Client client = Client.find(Integer.parseInt(request.params(":id")));
+
+      String clientName = request.queryParams("clientName");
+      int rating = Integer.parseInt(request.queryParams("rating"));
+      int stylist_id = Integer.parseInt(request.queryParams("stylist_id"));
+
+      Stylist stylist = Stylist.find(client.getStylistId());
+
+      stylist.updateRating(client.getRating(), false); //remove old rating
+      client.update(clientName, rating, stylist_id);
+
+      stylist = Stylist.find(stylist_id);
+      stylist.updateRating(rating, true); //add new rating
+
+      boolean updatingClient = true;
+
+      model.put("updatingClient", updatingClient);
+      model.put("client", client);
+      model.put("stylist", stylist);
+      model.put("template", "templates/client.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }

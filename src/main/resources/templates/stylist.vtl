@@ -5,7 +5,7 @@
 #if ($stylist.allStylistClients())
   <ul>
   #foreach ($client in $stylist.allStylistClients())
-    <li><a class="btn btn-primary" href="/client/$client.getId()">$client.getName()</a></li>
+    <li><a class="btn btn-warning" href="/client/$client.getId()">$client.getName()</a></li>
   #end
   </ul>
 #end
@@ -25,7 +25,7 @@
   #else <br>
   #end
 <br>
-<a class="btn btn-success" href="/add-client/$stylist.getId()">Add a Client</a>
+<a class="btn btn-info" href="/add-client/$stylist.getId()">Add a Client</a>
 
 <br>
 <br>
@@ -35,7 +35,7 @@
 <br>
 
 <div class="center">
-  <a class="btn btn-primary" href="/add-stylist">Add a Stylist</a>
+  <a class="btn btn-info" href="/add-stylist">Add a Stylist</a>
   <a class="btn btn-primary" href="/list-stylists">View All Stylists</a>
   <a class="btn btn-primary" href="/list-clients">View All Clients</a>
   <a class="btn btn-primary" href="/">Go to Home Page</a>

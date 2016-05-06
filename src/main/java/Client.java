@@ -73,4 +73,20 @@ public class Client{
       con.createQuery(sql).addParameter("id", this.id).executeUpdate();
     }
   }
+
+  public void update(String name, int rating, int stylist_id) {
+    this.name = name;
+    this.rating = rating;
+    this.stylist_id = stylist_id;
+
+    String sql = "UPDATE clients SET name = :name, rating = :rating, stylist_id = :stylist_id WHERE id = :id";
+    try (Connection con = DB.sql2o.open()) {
+      con.createQuery(sql)
+      .addParameter("name", this.name)
+      .addParameter("rating", this.rating)
+      .addParameter("stylist_id", this.stylist_id)
+      .addParameter("id", this.id)
+      .executeUpdate();
+    }
+  }
 }

@@ -2,7 +2,7 @@
 
 <ul>
   #foreach ($stylist in $stylists)
-    <li><a class="btn btn-info" href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
+    <li><a class="btn btn-warning" href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
   #end
 </ul>
 
@@ -22,7 +22,7 @@
 
   #end
 <div class="center">
-  <a class="btn btn-primary" href="/add-stylist">Add a Stylist</a>
-  <a class="btn btn-primary" href="/list-clients">View Clients</a>
+  <a class="btn btn-info" href="/add-stylist">Add a Stylist</a>
+  <a class="btn btn-primary" href="/list-clients">View All Clients</a>
   <a class="btn btn-primary" href="/">Go to home page</a>
 </div>
