@@ -1,0 +1,18 @@
+<h1 class="jumbotron">Add a Client for $stylist.getName()</h1>
+<div class="container">
+  <form class="form-group" action="/list-stylists" method="post">
+    <label for="clienttName">Client Name</label>
+    <input type="text" name="stylistName" id="stylistName">
+    <button type="submit" class="btn btn-info">Add</button>
+  </form>
+</div>
+
+<div class="row">
+  <div class="center col-xs-12">
+    <a class="btn btn-primary" href="/stylist/$stylist.getId()">View $stylist.getName()</a>
+    <a class="btn btn-primary" href="/list-stylists">View All Clients</a>
+    <a class="btn btn-primary" href="/list-clients">View All Stylists</a>
+    <a class="btn btn-primary" href="/">Go to home page</a>
+
+  </div>
+</div>
