@@ -1,0 +1,18 @@
+<h1 class="jumbotron">All Clients</h1>
+
+<ul>
+  #foreach ($client in $clients)
+    <li><a class="btn btn-primary" href="/client/$client.getId()">$client.getName()</a></li>
+  #end
+</ul>
+
+<div class="row">
+  <hr class="style18 col-xs-6 col-xs-offset-3">
+</div>
+
+<div class="center">
+  <a class="btn btn-primary" href="/list-stylists">View All Clients</a>
+  <a class="btn btn-primary" href="/list-clients">View All Stylists</a>
+  <a class="btn btn-primary" href="/add-stylist">Add a Stylist</a>
+  <a class="btn btn-primary" href="/">Go to home page</a>
+</div>
