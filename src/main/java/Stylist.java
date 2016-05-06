@@ -25,12 +25,22 @@ public class Stylist{
   }
 
   @Override
-  public boolean equals(Object stylist){
+  public boolean equals(Object stylist) {
     if (!(stylist instanceof Stylist)) {
       return false;
     } else {
       Stylist otherStylist = (Stylist) stylist;
       return this.getName().equals(otherStylist.getName());
+    }
+  }
+
+  public void save() {
+    String sql = "INSERT INTO stylists (name) VALUES (:name)";
+    try(Connection con = DB.sql2o.open()) {
+      this.id = (int) con.createQuery(sql, true)
+                .addParameter("name", this.name)
+                .executeUpdate()
+                .getKey();
     }
   }
 }

@@ -37,5 +37,13 @@ public class StylistTest {
     assertTrue(stylist1.equals(stylist2));
   }
 
+  @Test
+  public void save_savesInstanceToDBWithId() {
+    Stylist stylist = new Stylist("Name");
+    stylist.save();
+    Stylist savedStylist = Stylist.all().get(0);
+
+    assertEquals(stylist.getId(), savedStylist.getId());
+  }
 
 }
